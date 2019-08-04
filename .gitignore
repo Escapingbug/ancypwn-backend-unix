@@ -1,0 +1,10 @@
+__pycache__
+*.egg-info
+*.pyc
+build
+bdist
+dist
+venv
+venv3
+
+ancypwn-docker/*/*.py
