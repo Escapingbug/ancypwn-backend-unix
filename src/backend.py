@@ -1,6 +1,7 @@
 import appdirs
 import os
 import signal
+import docker
 
 from ancypwn.server import ServerProcess
 from ancypwn.util import _read_container_name, _make_sure_directory
@@ -37,11 +38,12 @@ def _start_service(port):
             action=start_server)
         daemon.start()
 
+
 def _end_service():
     with open(DAEMON_PID, 'r') as f:
         pid = int(f.read())
 
-    os.kill(pid, signal.SIGTERM)
+    os.kill(-pid, signal.SIGTERM)
     os.remove(DAEMON_PID)
 
 
@@ -104,6 +106,9 @@ def run(
     try:
         _run_container(image_name, volumes, priv, command)
     except Exception as e:
+        import time
+        # temporary solution, to make sure service is surely started
+        time.sleep(1)
         _end_service()
         raise e
 
