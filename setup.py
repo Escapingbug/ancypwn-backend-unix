@@ -8,7 +8,7 @@ install_requires = [
 
 setup(
     name='ancypwn-backend-unix',
-    version='0.0.1',
+    version='0.0.2',
     description='ancypwn unix universal backend',
     url='https://github.com/Escapingbug/ancypwn-backend-unix',
     author='Anciety',
